@@ -2,6 +2,8 @@ name: xebia-cli
 version: "0.1"
 author: Alexis Horgix Chotard <horgix@xebia.fr>
 about: Xebia Command Line Interface - Mainly talking to XDD
+settings:
+  - ArgRequiredElseHelp
 args:
     - verbose:
         short: v
