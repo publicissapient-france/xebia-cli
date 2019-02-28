@@ -1,0 +1,10 @@
+[package]
+name = "xebia-cli"
+version = "0.1.0"
+authors = ["Alexis Horgix Chotard <alexis.horgix.chotard@gmail.com>"]
+
+[dependencies]
+restson = "^0.5.2"
+serde = "^1.0.88"
+serde_derive = "^1.0.88"
+serde_json = "1.0.39"
