@@ -1,3 +1,5 @@
+.idea/
 
+# From `cargo new`
 /target
 **/*.rs.bk
