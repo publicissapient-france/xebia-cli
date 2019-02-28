@@ -1,0 +1,14 @@
+name: xebia-cli
+version: "0.1"
+author: Alexis Horgix Chotard <horgix@xebia.fr>
+about: Xebia Command Line Interface - Mainly talking to XDD
+args:
+    - verbose:
+        short: v
+        multiple: true
+        help: Sets the level of verbosity
+subcommands:
+    - echoes:
+        about: List echoes
+        version: "0.1"
+        author: Alexis Horgix Chotard <horgix@xebia.fr>
