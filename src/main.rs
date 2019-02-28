@@ -24,33 +24,29 @@ use clap::App;
 fn main() {
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
+    if let Some(_matches) = matches.subcommand_matches("echoes") {
+        let mut client = RestClient::new("https://api-dev.xebia.fr").unwrap();
 
-    //let mut client = RestClient::new("https://beta.todoist.com").unwrap();
-    let mut client = RestClient::new("https://api-dev.xebia.fr").unwrap();
+        // Authenticate to XDD with token from environment
+        let env_token = env::var("XDD_API_KEY");
+        match env_token {
+            Ok(api_key) => {
+                client.set_header("Authorization", &format!("Bearer {}", api_key)).unwrap();
 
-    // Authenticate to XDD with token from environment
-    let api_key = env::var("XDD_API_KEY").unwrap();
-    client.set_header("Authorization", &format!("Bearer {}", api_key)).unwrap();
-
-    if let Some(matches) = matches.subcommand_matches("echoes") {
-        let answer: Result<collections::Echoes, restson::Error> = client.get(());
-        match answer {
-            Ok(echoes)  => {
-                // We need to extract the enum value
-                match echoes {
-                    collections::Echoes::Object(echoes) => {
+                let answer: Result<collections::Echoes, restson::Error> = client.get(());
+                match answer {
+                    Ok(echoes)  => {
+                        // We need to extract the enum value
                         println!("{:?}", echoes);
-
-                        println!{"== Tasks =="};
-//                    println!("Total: {}", tasks_metrics.total);
-//                    println!("Completed: {}", tasks_metrics.completed);
-//                    println!("To-do: {}", tasks_metrics.todo);
-//                    println!("Total P1: {}", tasks_metrics.total_p1);
-                    }
+                    },
+                    Err(e) => println!("Error: {:?}", e),
                 }
+            }
+            Err(_) => {
+                println!("Could not find XDD_API_KEY in environment");
+                std::process::exit(1);
             },
-            Err(e) => println!("Error: {:?}", e),
-        }
+        };
     }
 }
 
