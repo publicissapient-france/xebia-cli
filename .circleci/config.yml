@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: rust:1.33.0
+    steps:
+      - checkout
+      - run:
+          name: build
+          command: cargo build
+      - run:
+          name: Debug
+          command: ls -lah target/
