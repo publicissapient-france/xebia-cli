@@ -7,7 +7,13 @@ jobs:
       - checkout
       - run:
           name: build
-          command: cargo build
-      - run:
-          name: Debug
-          command: ls -lah target/
+          command: cargo build --release
+      - store_artifacts:
+          path: target/release/xebia-cli
+          destination: xebia-cli
+
+workflows:
+  version: 2
+  full:
+    jobs:
+      - build
