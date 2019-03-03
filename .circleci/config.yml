@@ -3,7 +3,8 @@ jobs:
   fetch_docker_image:
     docker:
       - image: rust:1.33.0
-    steps: []
+    steps:
+      - checkout
   build:
     docker:
       - image: rust:1.33.0
