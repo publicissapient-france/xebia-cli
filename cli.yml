@@ -11,6 +11,11 @@ args:
         help: Sets the level of verbosity
 subcommands:
     - echoes:
-        about: List echoes
+        about: '"Echo des TOs" related commands. Default will list'
         version: "0.1"
         author: Alexis Horgix Chotard <horgix@xebia.fr>
+        subcommands:
+          - list:
+              about: List all echoes (edition, title and author).
+          - stats:
+              about: Get echoes stats. Currently only includes authoring stats.
