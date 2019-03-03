@@ -3,6 +3,7 @@ jobs:
   fetch_docker_image:
     docker:
       - image: rust:1.33.0
+    steps: []
   build:
     docker:
       - image: rust:1.33.0
@@ -11,6 +12,13 @@ jobs:
       - run:
           name: build
           command: cargo build --release
+          #- persist_to_workspace:
+          #    # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          #    # taken to be the root directory of the workspace.
+          #    root: workspace
+          #    # Must be relative path from root
+          #    paths:
+          #      - echo-output
       - store_artifacts:
           path: target/release/xebia-cli
           destination: xebia-cli
@@ -20,4 +28,6 @@ workflows:
   full:
     jobs:
       - fetch_docker_image
-      - build
+      - build:
+        requires:
+          - fetch_docker_image
