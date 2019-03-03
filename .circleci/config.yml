@@ -1,5 +1,8 @@
 version: 2
 jobs:
+  fetch_docker_image:
+    docker:
+      - image: rust:1.33.0
   build:
     docker:
       - image: rust:1.33.0
@@ -16,4 +19,5 @@ workflows:
   version: 2
   full:
     jobs:
+      - fetch_docker_image
       - build
