@@ -4,11 +4,6 @@ author: Alexis Horgix Chotard <horgix@xebia.fr>
 about: Xebia Command Line Interface - Mainly talking to XDD
 settings:
   - ArgRequiredElseHelp
-args:
-    - verbose:
-        short: v
-        multiple: true
-        help: Sets the level of verbosity
 subcommands:
     - echoes:
         about: '"Echo des TOs" related commands. Default will list'
