@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  "Build":
     docker:
       - image: circleci/rust:1.33.0
     steps:
@@ -9,6 +9,11 @@ jobs:
          keys:
            - v3-cargo-deps-{{ checksum "Cargo.lock" }}
            - v3-cargo-deps-
+      - run:
+          name: debug
+          command: |
+            ls -lah ./target
+            ls -lah ./target/release
       - run:
           name: build
           command: cargo build --release
@@ -23,7 +28,7 @@ jobs:
             - "./target/release/build"
             - "./target/release/deps"
 
-  smoke_test:
+  "Smoke test":
     docker:
       - image: circleci/rust:1.33.0
     steps:
@@ -35,7 +40,7 @@ jobs:
       - run:
           name: "Execute binary with --help and check that output looks ok-ish"
           command: ./xebia-cli --help | head -n1 | grep xebia-cli
-  store_binary_artifact:
+  "Store CLI binary as artifact":
     docker:
       - image: circleci/rust:1.33.0
     steps:
