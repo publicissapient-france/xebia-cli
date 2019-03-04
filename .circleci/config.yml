@@ -35,6 +35,15 @@ jobs:
       - run:
           name: "Execute binary with --help and check that output looks ok-ish"
           command: ./xebia-cli --help | head -n1 | grep xebia-cli
+  store_binary_artifact:
+    docker:
+      - image: circleci/rust:1.33.0
+    steps:
+      - attach_workspace:
+          at: .
+      - store_artifacts:
+          path: target/release/xebia-cli
+          destination: xebia-cli
 
 workflows:
   version: 2
@@ -42,5 +51,8 @@ workflows:
     jobs:
       - build
       - smoke_test:
+          requires:
+            - build
+      - store_binary_artifact:
           requires:
             - build
