@@ -19,6 +19,7 @@ jobs:
             - xebia-cli
   smoke_test:
     docker:
+      - image: rust:1.33.0
     steps:
       - attach_workspace:
           at: .
