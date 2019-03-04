@@ -30,5 +30,5 @@ workflows:
     jobs:
       - fetch_docker_image
       - build:
-        requires:
-          - fetch_docker_image
+          requires:
+            - fetch_docker_image
