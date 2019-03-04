@@ -10,11 +10,6 @@ jobs:
            - v4-cargo-deps-{{ checksum "Cargo.lock" }}
            - v4-cargo-deps-
       - run:
-          name: debug
-          command: |
-            ls -lah ./target
-            ls -lah ./target/release
-      - run:
           name: build
           command: cargo build --release
       - persist_to_workspace:
