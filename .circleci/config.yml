@@ -7,8 +7,8 @@ jobs:
       - checkout
       - restore_cache:
          keys:
-           - v2-cargo-deps-{{ checksum "Cargo.lock" }}
-           - v2-cargo-deps-
+           - v3-cargo-deps-{{ checksum "Cargo.lock" }}
+           - v3-cargo-deps-
       - run:
           name: build
           command: cargo build --release
@@ -17,12 +17,11 @@ jobs:
           paths:
             - xebia-cli
       - save_cache:
-          key: v2-cargo-deps-{{ checksum "Cargo.lock" }}
+          key: v3-cargo-deps-{{ checksum "Cargo.lock" }}
           paths:
             - "~/.cargo"
-            - "./target"
-            #- "./target/release/build"
-            #- "./target/release/deps"
+            - "./target/release/build"
+            - "./target/release/deps"
 
   smoke_test:
     docker:
