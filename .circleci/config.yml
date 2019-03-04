@@ -17,11 +17,12 @@ jobs:
           paths:
             - xebia-cli
       - save_cache:
-          key: v1-cargo-deps-{{ checksum "Cargo.lock" }}
+          key: v2-cargo-deps-{{ checksum "Cargo.lock" }}
           paths:
             - "~/.cargo"
-            - "./target/release/build"
-            - "./target/release/deps"
+            - "./target"
+            #- "./target/release/build"
+            #- "./target/release/deps"
 
   smoke_test:
     docker:
