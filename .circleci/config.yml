@@ -40,7 +40,7 @@ workflows:
   version: 2
   full:
     jobs:
-      - build:
+      - build
       - smoke_test:
           requires:
             - build
