@@ -7,8 +7,8 @@ jobs:
       - checkout
       - restore_cache:
          keys:
-           - v1-cargo-deps-{{ checksum "Cargo.lock" }}
-           - v1-cargo-deps-
+           - v2-cargo-deps-{{ checksum "Cargo.lock" }}
+           - v2-cargo-deps-
       - run:
           name: build
           command: cargo build --release
