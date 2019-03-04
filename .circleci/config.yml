@@ -18,6 +18,7 @@ jobs:
           paths:
             - xebia-cli
   smoke_test:
+    docker:
     steps:
       - attach_workspace:
           at: .
