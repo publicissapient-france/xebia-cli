@@ -1,4 +1,5 @@
 use std::fmt;
+use std::process;
 use echo;
 
 #[derive(Deserialize)]
@@ -12,7 +13,15 @@ impl fmt::Debug for Echoes {
         match self {
             Echoes::Object(echoes) => {
                 for echo in echoes {
-                    write!(f, "{:?}\n", echo);
+                    // TODO fix unused write! std::result::Result
+                    // Construct result string then write it?
+                    match write!(f, "{:?}\n", echo) {
+                        Ok(_) => {},
+                        Err(e) => {
+                            println!("Failed to write an Echo: {:?}", e);
+                            process::exit(1);
+                        }
+                    }
                 }
                 return write!(f, "\n");
             },
