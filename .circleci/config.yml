@@ -13,16 +13,17 @@ jobs:
       - run:
           name: build
           command: cargo build --release
-          #- persist_to_workspace:
-          #    # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
-          #    # taken to be the root directory of the workspace.
-          #    root: workspace
-          #    # Must be relative path from root
-          #    paths:
-          #      - echo-output
-      - store_artifacts:
-          path: target/release/xebia-cli
-          destination: xebia-cli
+      - persist_to_workspace:
+          root: target/release
+          paths:
+            - xebia-cli
+  smoke_test:
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: debug
+          command: ls -lah
 
 workflows:
   version: 2
@@ -32,3 +33,6 @@ workflows:
       - build:
           requires:
             - fetch_docker_image
+      - smoke_test:
+          requires:
+            - build
