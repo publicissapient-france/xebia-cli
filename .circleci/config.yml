@@ -1,9 +1,8 @@
 version: 2
 jobs:
-      # circleci/rust:
   build:
     docker:
-      - image: rust:1.33.0
+      - image: circleci/rust:1.33.0
     steps:
       - checkout
       - restore_cache:
@@ -26,7 +25,7 @@ jobs:
 
   smoke_test:
     docker:
-      - image: rust:1.33.0
+      - image: circleci/rust:1.33.0
     steps:
       - attach_workspace:
           at: .
@@ -41,10 +40,7 @@ workflows:
   version: 2
   full:
     jobs:
-      - fetch_docker_image
       - build:
-          requires:
-            - fetch_docker_image
       - smoke_test:
           requires:
             - build
