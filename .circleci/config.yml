@@ -2,6 +2,7 @@ version: 2
 jobs:
   fetch_docker_image:
     docker:
+      # circleci/rust:
       - image: rust:1.33.0
     steps:
       - checkout
@@ -10,6 +11,10 @@ jobs:
       - image: rust:1.33.0
     steps:
       - checkout
+      - restore_cache:
+         keys:
+           - v1-cargo-deps-{{ checksum "Cargo.lock" }}
+           - v1-cargo-deps-
       - run:
           name: build
           command: cargo build --release
@@ -17,6 +22,13 @@ jobs:
           root: target/release
           paths:
             - xebia-cli
+      - save_cache:
+          key: v1-cargo-deps-{{ checksum "Cargo.lock" }}
+          paths:
+            - "~/.cargo"
+            - "./target/release/build"
+            - "./target/release/deps"
+
   smoke_test:
     docker:
       - image: rust:1.33.0
