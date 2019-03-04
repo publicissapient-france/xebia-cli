@@ -54,10 +54,10 @@ workflows:
   version: 2
   full:
     jobs:
-      - build
-      - smoke_test:
+      - "Build"
+      - "Smoke test":
           requires:
-            - build
-      - store_binary_artifact:
+            - "Build"
+      - "Store CLI binary as artifact":
           requires:
-            - build
+            - "Build"
