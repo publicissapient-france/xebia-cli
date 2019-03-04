@@ -1,11 +1,6 @@
 version: 2
 jobs:
-  fetch_docker_image:
-    docker:
       # circleci/rust:
-      - image: rust:1.33.0
-    steps:
-      - checkout
   build:
     docker:
       - image: rust:1.33.0
