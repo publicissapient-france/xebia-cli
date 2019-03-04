@@ -24,8 +24,11 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          name: debug
-          command: ls -lah
+          name: "Execute binary with --help"
+          command: ./xebia-cli --help
+      - run:
+          name: "Execute binary with --help and check that output looks ok-ish"
+          command: ./xebia-cli --help | head -n1 | grep xebia-cli
 
 workflows:
   version: 2
