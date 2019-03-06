@@ -24,15 +24,14 @@ extern crate clap;
 use clap::App;
 
 fn main() {
+    // CLI arguments and commands handling
+    let yaml = load_yaml!("../cli.yml");
+    let matches = App::from_yaml(yaml).get_matches();
     // Settings handling
     let settings = settings::Settings::new();
     match settings {
         Ok(settings) => {
             println!("Settings: {:?}", settings);
-            // CLI arguments and commands handling
-            let yaml = load_yaml!("../cli.yml");
-            let matches = App::from_yaml(yaml).get_matches();
-
             // Dispatch work
             if let Some(_matches) = matches.subcommand_matches("echoes") {
                 if let Some(_) = _matches.subcommand_matches("list") {
