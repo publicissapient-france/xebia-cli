@@ -1,0 +1,4 @@
+debug = false
+
+[XDD]
+endpoint = "https://api-dev.xebia.fr"
