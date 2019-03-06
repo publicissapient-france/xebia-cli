@@ -11,16 +11,19 @@ pub const XDD_API_TOKEN_ENV_VAR: &str = "XDD_API_KEY";
 
 #[derive(Debug, Deserialize)]
 pub struct Settings {
-    debug: bool,
+    pub debug: bool,
     pub xdd: XDD,
 }
 
 impl Settings {
-    pub fn new() -> Result<Self, ConfigError> {
+    pub fn new(debug: bool) -> Result<Self, ConfigError> {
         let mut s = Config::new();
 
         // Start off by merging in the "default" configuration file
         s.merge(File::with_name("config/default"))?;
+        if debug {
+            s.merge(File::with_name("config/debug"))?;
+        }
 
         let api_key = env::var(XDD_API_TOKEN_ENV_VAR);
         match api_key {
