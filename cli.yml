@@ -4,6 +4,11 @@ author: Alexis Horgix Chotard <horgix@xebia.fr>
 about: Xebia Command Line Interface - Mainly talking to XDD
 settings:
   - ArgRequiredElseHelp
+args:
+  - debug:
+      short: d
+      long: debug
+      help: Full debug mode. Prints and local endpoints
 subcommands:
     - echoes:
         about: '"Echo des TOs" related commands. Default will list'
