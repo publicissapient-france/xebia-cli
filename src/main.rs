@@ -38,7 +38,7 @@ fn main() {
                 if let Some(_) = _matches.subcommand_matches("list") {
                     println!("Listing!");
                 }
-                let mut client = RestClient::new("https://api-dev.xebia.fr").unwrap();
+                let mut client = RestClient::new(settings.xdd.endpoint.as_str()).unwrap();
 
                 // Authenticate to XDD with token from environment
                 match settings.xdd.api_token {
