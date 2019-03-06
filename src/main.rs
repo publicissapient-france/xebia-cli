@@ -28,7 +28,8 @@ fn main() {
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
     // Settings handling
-    let settings = settings::Settings::new();
+    let settings = settings::Settings::new(matches.is_present("debug"));
+
     match settings {
         Ok(settings) => {
             println!("Settings: {:?}", settings);
