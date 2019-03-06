@@ -24,6 +24,14 @@ jobs:
             #- "./target/release/build"
             #- "./target/release/deps"
 
+  "Check formatting":
+    docker:
+      - image: circleci/rust:1.33.0
+    steps:
+      - checkout
+      - run:
+          name: fmt
+          command: cargo fmt -- -help
   "Smoke test":
     docker:
       - image: circleci/rust:1.33.0
@@ -50,7 +58,10 @@ workflows:
   version: 2
   full:
     jobs:
+      - "Check formatting"
       - "Build"
+          requires:
+            - "Check formatting"
       - "Smoke test":
           requires:
             - "Build"
