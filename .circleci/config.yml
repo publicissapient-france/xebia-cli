@@ -29,6 +29,10 @@ jobs:
       - image: circleci/rust:1.33.0
     steps:
       - checkout
+      # TODO : Move this to its own job to measure it?
+      - run:
+          name: add rustfmt capabilities
+          command: rustup component add rustfmt
       - run:
           name: fmt
           command: cargo fmt -- -help
