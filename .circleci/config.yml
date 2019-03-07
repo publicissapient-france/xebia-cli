@@ -35,7 +35,7 @@ jobs:
           command: rustup component add rustfmt
       - run:
           name: fmt
-          command: cargo fmt -- -help
+          command: cargo fmt -- --check
   "Smoke test":
     docker:
       - image: circleci/rust:1.33.0
