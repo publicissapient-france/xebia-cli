@@ -1,5 +1,5 @@
+use config::{Config, ConfigError, File}; // , Environment};
 use std::env;
-use config::{ConfigError, Config, File}; // , Environment};
 
 #[derive(Debug, Deserialize)]
 pub struct XDD {

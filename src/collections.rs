@@ -1,11 +1,11 @@
+use echo;
 use std::fmt;
 use std::process;
-use echo;
 
 #[derive(Deserialize)]
 #[serde(untagged)]
 pub enum Echoes {
-    Object(Vec<echo::Echo>)
+    Object(Vec<echo::Echo>),
 }
 
 impl fmt::Debug for Echoes {
@@ -16,7 +16,7 @@ impl fmt::Debug for Echoes {
                     // TODO fix unused write! std::result::Result
                     // Construct result string then write it?
                     match write!(f, "{:?}\n", echo) {
-                        Ok(_) => {},
+                        Ok(_) => {}
                         Err(e) => {
                             println!("Failed to write an Echo: {:?}", e);
                             process::exit(1);
@@ -24,7 +24,7 @@ impl fmt::Debug for Echoes {
                     }
                 }
                 return write!(f, "\n");
-            },
+            }
         }
     }
 }

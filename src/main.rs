@@ -3,20 +3,22 @@ extern crate serde_derive;
 
 //  TODO Rust offline documentation
 extern crate config;
+extern crate restson;
 extern crate serde;
 extern crate serde_json;
-extern crate restson;
 
 //use std::collections::HashMap;
-use restson::{RestPath, RestClient};
+use restson::{RestClient, RestPath};
 
 // TODO: this could probably be improved and moved to a lib.rs file
-pub mod echo;
 pub mod collections;
+pub mod echo;
 pub mod settings;
 
 impl RestPath<()> for collections::Echoes {
-    fn get_path(_: ()) -> Result<String, restson::Error> { Ok(String::from("echoes")) }
+    fn get_path(_: ()) -> Result<String, restson::Error> {
+        Ok(String::from("echoes"))
+    }
 }
 
 #[macro_use]
@@ -43,15 +45,16 @@ fn main() {
                 // Authenticate to XDD with token from environment
                 match settings.xdd.api_token {
                     Some(api_key) => {
-                        client.set_header("Authorization", &format!("Bearer {}", api_key)).unwrap();
-
+                        client
+                            .set_header("Authorization", &format!("Bearer {}", api_key))
+                            .unwrap();
 
                         let answer: Result<collections::Echoes, restson::Error> = client.get(());
                         match answer {
-                            Ok(echoes)  => {
+                            Ok(echoes) => {
                                 // We need to extract the enum value
                                 println!("{:?}", echoes);
-                            },
+                            }
                             Err(e) => println!("Error: {:?}", e),
                         }
                     }
@@ -59,7 +62,7 @@ fn main() {
                         println!("Could not find XDD API token. It can be passed through environment under the name {:?}",
                                  settings::XDD_API_TOKEN_ENV_VAR);
                         std::process::exit(1);
-                    },
+                    }
                 };
             }
         }
@@ -68,4 +71,3 @@ fn main() {
         }
     }
 }
-
