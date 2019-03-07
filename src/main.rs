@@ -37,7 +37,7 @@ fn main() {
             println!("Settings: {:?}", settings);
             // Dispatch work
             if let Some(_matches) = matches.subcommand_matches("echoes") {
-                if let Some(_) = _matches.subcommand_matches("list") {
+                if _matches.subcommand_matches("list").is_some() {
                     println!("Listing!");
                 }
                 let mut client = RestClient::new(settings.xdd.endpoint.as_str()).unwrap();

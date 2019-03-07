@@ -15,7 +15,7 @@ impl fmt::Debug for Echoes {
                 for echo in echoes {
                     // TODO fix unused write! std::result::Result
                     // Construct result string then write it?
-                    match write!(f, "{:?}\n", echo) {
+                    match writeln!(f, "{:?}", echo) {
                         Ok(_) => {}
                         Err(e) => {
                             println!("Failed to write an Echo: {:?}", e);
@@ -23,7 +23,7 @@ impl fmt::Debug for Echoes {
                         }
                     }
                 }
-                return write!(f, "\n");
+                return writeln!(f);
             }
         }
     }
