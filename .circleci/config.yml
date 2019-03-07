@@ -59,7 +59,7 @@ workflows:
   full:
     jobs:
       - "Check formatting"
-      - "Build"
+      - "Build":
           requires:
             - "Check formatting"
       - "Smoke test":
