@@ -1,7 +1,7 @@
 use config::{Config, ConfigError, File}; // , Environment};
 use std::env;
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct XDD {
     pub api_token: Option<String>,
     pub endpoint: String,
@@ -9,7 +9,7 @@ pub struct XDD {
 // TODO use every XDD_ from env?
 pub const XDD_API_TOKEN_ENV_VAR: &str = "XDD_API_KEY";
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Deserialize, Clone)]
 pub struct Settings {
     pub debug: bool,
     pub xdd: XDD,
