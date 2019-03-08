@@ -2,6 +2,9 @@
 extern crate serde_derive;
 extern crate log;
 
+extern crate simplelog;
+use simplelog::*;
+
 //  TODO Rust offline documentation
 extern crate config;
 extern crate restson;
@@ -28,6 +31,11 @@ extern crate clap;
 use clap::App;
 
 fn main() {
+    CombinedLogger::init(
+        vec![
+            TermLogger::new(LevelFilter::Debug, Config::default()).unwrap(),
+        ]
+    ).unwrap();
     log::debug!("Creating CLI and parsing arguments...");
     // CLI arguments and commands handling
     let yaml = load_yaml!("../cli.yml");
