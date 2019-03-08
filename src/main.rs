@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate serde_derive;
+extern crate log;
 
 //  TODO Rust offline documentation
 extern crate config;
@@ -9,6 +10,7 @@ extern crate serde_json;
 
 //use std::collections::HashMap;
 use restson::{RestClient, RestPath};
+
 
 // TODO: this could probably be improved and moved to a lib.rs file
 pub mod collections;
@@ -26,15 +28,17 @@ extern crate clap;
 use clap::App;
 
 fn main() {
+    log::debug!("Creating CLI and parsing arguments...");
     // CLI arguments and commands handling
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
     // Settings handling
+    log::debug!("Defining settings...");
     let settings = settings::Settings::new(matches.is_present("debug"));
 
     match settings {
         Ok(settings) => {
-            println!("Settings: {:?}", settings);
+            log::debug!("Settings: {:?}", settings);
             // Dispatch work
             if let Some(_matches) = matches.subcommand_matches("echoes") {
                 // TODO or None
@@ -60,7 +64,7 @@ fn main() {
                         }
                     }
                     None => {
-                        println!("Could not find XDD API token. It can be passed through environment under the name {:?}",
+                        log::error!("Could not find XDD API token. It can be passed through environment under the name {:?}",
                                  settings::XDD_API_TOKEN_ENV_VAR);
                         std::process::exit(1);
                     }

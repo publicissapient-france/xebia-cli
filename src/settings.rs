@@ -17,11 +17,14 @@ pub struct Settings {
 
 impl Settings {
     pub fn new(debug: bool) -> Result<Self, ConfigError> {
+        log::trace!("Instantiating new Settings");
         let mut s = Config::new();
 
         // Start off by merging in the "default" configuration file
+        log::trace!("Loading default configuration");
         s.merge(File::with_name("config/default"))?;
         if debug {
+            log::info!("Debug mode detected; loading debug  config");
             s.merge(File::with_name("config/debug"))?;
         }
 
@@ -29,12 +32,13 @@ impl Settings {
         match api_key {
             Ok(result) => {
                 // Got API key from environment
-                println!("[Settings] Found XDD API token in env");
+                log::info!("[Settings] Found XDD API token in env");
                 s.set("xdd.api_token", result)?;
             }
             Err(e) => {
                 // Failed to get API key from environment
                 // TODO : exit
+                log::error!("Could not find XDD API token in env")
             }
         }
         // Add in the current environment file

@@ -18,7 +18,7 @@ impl fmt::Debug for Echoes {
                     match writeln!(f, "{:?}", echo) {
                         Ok(_) => {}
                         Err(e) => {
-                            println!("Failed to write an Echo: {:?}", e);
+                            log::error!("Failed to format an Echo: {:?}", e);
                             process::exit(1);
                         }
                     }
