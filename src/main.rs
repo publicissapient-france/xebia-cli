@@ -37,13 +37,14 @@ fn main() {
             println!("Settings: {:?}", settings);
             // Dispatch work
             if let Some(_matches) = matches.subcommand_matches("echoes") {
+                // TODO or None
                 if _matches.subcommand_matches("list").is_some() {
                     println!("Listing!");
                 }
                 let mut client = RestClient::new(settings.xdd.endpoint.as_str()).unwrap();
 
                 // Authenticate to XDD with token from environment
-                match settings.xdd.api_token {
+                match settings.xdd.api_token.clone() {
                     Some(api_key) => {
                         client
                             .set_header("Authorization", &format!("Bearer {}", api_key))
