@@ -3,8 +3,9 @@ use std::fmt;
 #[derive(Deserialize)]
 pub struct Echo {
     pub edition: u32,
-    pub title: String,
     pub author: String,
+    pub title: String,
+    pub main_topic: String,
 }
 
 impl fmt::Debug for Echo {
