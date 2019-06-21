@@ -16,15 +16,17 @@ pub struct Settings {
 }
 
 impl Settings {
-    pub fn new(debug: bool) -> Result<Self, ConfigError> {
+    pub fn new(cli_flags: clap::ArgMatches) -> Result<Self, ConfigError> {
         log::trace!("Instantiating new Settings");
         let mut s = Config::new();
 
         // Start off by merging in the "default" configuration file
         log::trace!("Loading default configuration");
         s.merge(File::with_name("config/default"))?;
-        if debug {
-            log::info!("Debug mode detected; loading debug  config");
+
+        // Setup Debug mode
+        if cli_flags.is_present("debug") {
+            log::info!("Debug mode detected; loading debug config");
             s.merge(File::with_name("config/debug"))?;
         }
 

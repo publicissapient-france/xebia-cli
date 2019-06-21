@@ -45,7 +45,7 @@ fn main() {
 
     // Hamdle Settings
     log::debug!("Defining settings...");
-    let settings = settings::Settings::new(matches.is_present("debug"));
+    let settings = settings::Settings::new(matches.clone());
 
     match settings {
         Ok(settings) => {
