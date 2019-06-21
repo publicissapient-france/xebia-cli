@@ -1,4 +1,4 @@
 debug = true
 
 [XDD]
-endpoint = "http://localhost:5000"
+endpoint = "https://api-dev.xebia.fr"
