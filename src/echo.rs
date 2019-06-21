@@ -11,5 +11,6 @@ pub struct Echo {
 impl fmt::Debug for Echo {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}. {} ({})", self.edition, self.title, self.author)
+        // write!(f, "{}. {} ({}) - {}", self.edition, self.title, self.author, self.main_topic)
     }
 }

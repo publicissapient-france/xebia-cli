@@ -2,3 +2,6 @@ debug = false
 
 [XDD]
 endpoint = "https://api.xebia.fr"
+
+[Echoes]
+full = false
