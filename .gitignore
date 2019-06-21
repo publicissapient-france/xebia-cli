@@ -1,4 +1,5 @@
 .idea/
+demo/
 
 # From `cargo new`
 /target
