@@ -1,0 +1,4 @@
+debug = true
+
+[XDD]
+endpoint = "http://localhost:5000"
