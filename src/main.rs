@@ -31,16 +31,19 @@ extern crate clap;
 use clap::App;
 
 fn main() {
+    // Initialize loggers
     CombinedLogger::init(
         vec![
             TermLogger::new(LevelFilter::Debug, Config::default()).unwrap(),
         ]
     ).unwrap();
     log::debug!("Creating CLI and parsing arguments...");
-    // CLI arguments and commands handling
+
+    // Handle CLI arguments and commands 
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
-    // Settings handling
+
+    // Hamdle Settings
     log::debug!("Defining settings...");
     let settings = settings::Settings::new(matches.is_present("debug"));
 
