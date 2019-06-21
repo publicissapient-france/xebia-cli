@@ -14,7 +14,6 @@ extern crate serde_json;
 //use std::collections::HashMap;
 use restson::{RestClient, RestPath};
 
-
 // TODO: this could probably be improved and moved to a lib.rs file
 pub mod collections;
 pub mod echo;
@@ -32,14 +31,13 @@ use clap::App;
 
 fn main() {
     // Initialize loggers
-    CombinedLogger::init(
-        vec![
-            TermLogger::new(LevelFilter::Debug, Config::default()).unwrap(),
-        ]
-    ).unwrap();
+    CombinedLogger::init(vec![
+        TermLogger::new(LevelFilter::Debug, Config::default()).unwrap()
+    ])
+    .unwrap();
     log::debug!("Creating CLI and parsing arguments...");
 
-    // Handle CLI arguments and commands 
+    // Handle CLI arguments and commands
     let yaml = load_yaml!("../cli.yml");
     let matches = App::from_yaml(yaml).get_matches();
 
