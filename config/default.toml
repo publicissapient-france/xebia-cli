@@ -1,4 +1,4 @@
 debug = false
 
 [XDD]
-endpoint = "https://api-dev.xebia.fr"
+endpoint = "https://api.xebia.fr"
