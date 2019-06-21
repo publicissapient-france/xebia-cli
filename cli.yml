@@ -17,5 +17,10 @@ subcommands:
         subcommands:
           - list:
               about: List all echoes (edition, title and author).
+              args:
+                - full:
+                    short: f
+                    long: full
+                    help: Full list mode. Also print main topic.
           - stats:
               about: Get echoes stats. Currently only includes authoring stats.
