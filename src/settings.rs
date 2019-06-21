@@ -30,6 +30,7 @@ impl Settings {
             s.merge(File::with_name("config/debug"))?;
         }
 
+        // Load XDD API Key
         let api_key = env::var(XDD_API_TOKEN_ENV_VAR);
         match api_key {
             Ok(result) => {
