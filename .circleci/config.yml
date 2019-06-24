@@ -17,7 +17,7 @@ jobs:
           paths:
             - xebia-cli
       - save_cache:
-          key: v4-cargo-deps-{{ checksum "Cargo.lock" }}
+          key: v5-cargo-deps-{{ checksum "Cargo.lock" }}
           paths:
             - "~/.cargo"
             - "./target"
