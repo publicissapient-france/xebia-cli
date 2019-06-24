@@ -55,7 +55,7 @@ jobs:
       - attach_workspace:
           at: .
       - store_artifacts:
-          path: target/release/xebia-cli
+          path: ./xebia-cli
           destination: xebia-cli
 
 workflows:
