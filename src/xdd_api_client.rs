@@ -8,7 +8,7 @@ pub fn new(settings: Settings) -> RestClient {
         Ok(client) => client,
         Err(e) => {
             println!("{:?}", e);
-            panic!("{:?}", e);
+            std::process::exit(1);
         }
     };
 
