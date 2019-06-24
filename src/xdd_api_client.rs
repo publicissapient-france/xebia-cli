@@ -14,11 +14,10 @@ pub fn new(settings: Settings) -> RestClient {
 
     // Authenticate to XDD with token from environment
     match settings.xdd.api_token.clone() {
-        Some(api_key) => {
-            client
-                .set_header("Authorization", &format!("Bearer {}", api_key))
-                .unwrap();
-        }
+        Some(api_key) => match client.set_header("Authorization", &format!("Bearer {}", api_key)) {
+            Ok(_) => {}
+            Err(e) => println!("{:?}", e),
+        },
         None => {
             log::error!("Could not find XDD API token. It can be passed through environment under the name {:?}",
                              XDD_API_TOKEN_ENV_VAR);
