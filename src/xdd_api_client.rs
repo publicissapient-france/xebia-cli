@@ -3,7 +3,14 @@ use settings::{Settings, XDD_API_TOKEN_ENV_VAR};
 
 // TODO : return a Result<> instead and pass Error?
 pub fn new(settings: Settings) -> RestClient {
-    let mut client = RestClient::new(settings.xdd.endpoint.as_str()).unwrap();
+    let res_client = RestClient::new(settings.xdd.endpoint.as_str());
+    let mut client = match res_client {
+        Ok(client) => client,
+        Err(e) => {
+            println!("{:?}", e);
+            panic!("{:?}", e);
+        }
+    };
 
     // Authenticate to XDD with token from environment
     match settings.xdd.api_token.clone() {
