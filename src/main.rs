@@ -14,10 +14,11 @@ extern crate serde_json;
 //use std::collections::HashMap;
 
 // TODO: this could probably be improved and moved to a lib.rs file
-pub mod settings;
 pub mod collections;
-pub mod echo;
 pub mod commands;
+pub mod echo;
+pub mod settings;
+pub mod xdd_api_client;
 
 #[macro_use]
 extern crate clap;
