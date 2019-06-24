@@ -34,7 +34,7 @@ fn main() {
     CombinedLogger::init(vec![
         TermLogger::new(LevelFilter::Debug, Config::default()).unwrap()
     ])
-    .unwrap();
+    .expect("Could not initialize logger");
     log::debug!("Creating CLI and parsing arguments...");
 
     // Handle CLI arguments and commands
