@@ -39,6 +39,8 @@ jobs:
   "Smoke test":
     docker:
       - image: circleci/rust:1.33.0
+    environment:
+      TERM: xterm
     steps:
       - attach_workspace:
           at: .
