@@ -41,6 +41,7 @@ jobs:
       - image: circleci/rust:1.33.0
     environment:
       TERM: xterm
+      RUST_BACKTRACE: 1
     steps:
       - attach_workspace:
           at: .
