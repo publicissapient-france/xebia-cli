@@ -48,9 +48,9 @@ jobs:
       - run:
           name: "Execute binary with --help"
           command: ./xebia-cli --help
-      - run:
-          name: "Execute binary with --help and check that output looks ok-ish"
-          command: ./xebia-cli --help | head -n1 | grep xebia-cli
+      # - run:
+      #     name: "Execute binary with --help and check that output looks ok-ish"
+      #     command: ./xebia-cli --help | head -n1 | grep xebia-cli
   "Store CLI binary as artifact":
     docker:
       - image: circleci/rust:1.33.0
