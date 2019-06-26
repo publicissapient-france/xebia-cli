@@ -31,16 +31,14 @@ use clap::App;
 
 fn main() {
     // Initialize loggers
-    let tl = TermLogger::new(LevelFilter::Debug, Config::default());
-    let termlogger = match tl {
-        Some(t) => t,
+    let term_logger = match TermLogger::new(LevelFilter::Debug, Config::default()) {
+        Some(tl) => tl,
         None => {
-            println!("Got NONE for TermLogger");
+            println!("Failed to create TermLogger; exiting.");
             std::process::exit(1);
         }
     };
-
-    CombinedLogger::init(vec![termlogger]).expect("Could not initialize logger");
+    CombinedLogger::init(vec![term_logger]).expect("Failed to initialize logger");
     log::debug!("Creating CLI and parsing arguments...");
 
     // Handle CLI arguments and commands
