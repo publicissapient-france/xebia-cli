@@ -38,7 +38,7 @@ impl Settings {
                 log::info!("[Settings] Found XDD API token in env");
                 s.set("xdd.api_token", result)?;
             }
-            Err(e) => {
+            Err(_e) => {
                 // Failed to get API key from environment
                 // TODO : exit
                 log::error!("Could not find XDD API token in env")
