@@ -1,10 +1,10 @@
 use clap::ArgMatches;
-use collections;
+use collections::Echoes;
 use restson::RestPath;
 use settings;
 use xdd_api_client;
 
-impl RestPath<()> for collections::Echoes {
+impl RestPath<()> for Echoes {
     fn get_path(_: ()) -> Result<String, restson::Error> {
         Ok(String::from("echoes"))
     }
