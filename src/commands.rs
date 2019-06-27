@@ -3,10 +3,16 @@ use collections::Echoes;
 use restson::RestPath;
 use settings;
 use xdd_api_client;
+use stats::EchoesStats;
 
 impl RestPath<()> for Echoes {
     fn get_path(_: ()) -> Result<String, restson::Error> {
         Ok(String::from("echoes"))
+    }
+}
+impl RestPath<()> for EchoesStats {
+    fn get_path(_: ()) -> Result<String, restson::Error> {
+        Ok(String::from("stats"))
     }
 }
 
