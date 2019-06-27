@@ -17,6 +17,7 @@ extern crate serde_json;
 pub mod collections;
 pub mod commands;
 pub mod echo;
+pub mod stats;
 pub mod settings;
 pub mod xdd_api_client;
 
