@@ -19,3 +19,4 @@ subcommands:
               about: List all echoes (edition, title and author).
           - stats:
               about: Get echoes stats. Currently only includes authoring stats.
+              alias: stat
