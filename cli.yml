@@ -11,7 +11,7 @@ args:
       help: Full debug mode. Prints and local endpoints
 subcommands:
     - echoes:
-        about: '"Echo des TOs" related commands. Default will list'
+        about: '"Echo des TOs" related commands. Default will help'
         version: "0.1"
         author: Alexis Horgix Chotard <horgix@xebia.fr>
         subcommands:
@@ -20,3 +20,12 @@ subcommands:
           - stats:
               about: Get echoes stats. Currently only includes authoring stats.
               alias: stat
+        settings:
+          - ArgRequiredElseHelp
+    - meti: # alias metis ?
+        about: '"Mardis En Terre Inconnue" related commands. Default will list'
+        version: "0.1"
+        author: Alexis Horgix Chotard <horgix@xebia.fr>
+        subcommands:
+          - list:
+              about: List all METIs.
