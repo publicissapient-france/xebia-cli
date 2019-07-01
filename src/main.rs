@@ -17,6 +17,7 @@ extern crate serde_json;
 pub mod collections;
 pub mod commands;
 pub mod echo;
+pub mod meti;
 pub mod settings;
 pub mod stats;
 pub mod xdd_api_client;
@@ -52,6 +53,8 @@ fn main() {
             // Dispatch work
             if let Some(_matches) = matches.subcommand_matches("echoes") {
                 commands::process_echoes_command(_matches, settings);
+            } else if let Some(_matches) = matches.subcommand_matches("meti") {
+                commands::process_meti_command(_matches, settings);
             } // None case doesn't have to be handled, it's simply not the "echoes" command
         }
         Err(config_error) => {

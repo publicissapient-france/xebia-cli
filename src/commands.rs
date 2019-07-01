@@ -1,5 +1,5 @@
 use clap::ArgMatches;
-use collections::Echoes;
+use collections::{Echoes, Metis};
 use restson::RestPath;
 use settings;
 use stats::EchoesStats;
@@ -13,6 +13,11 @@ impl RestPath<()> for Echoes {
 impl RestPath<()> for EchoesStats {
     fn get_path(_: ()) -> Result<String, restson::Error> {
         Ok(String::from("stats"))
+    }
+}
+impl RestPath<()> for Metis {
+    fn get_path(_: ()) -> Result<String, restson::Error> {
+        Ok(String::from("meti"))
     }
 }
 
@@ -36,6 +41,22 @@ pub fn process_echoes_command(command: &ArgMatches, settings: settings::Settings
             // We need to extract the enum value
             Ok(stats) => {
                 println!("{:?}", stats);
+            }
+            Err(e) => println!("Error: {:?}", e),
+        }
+    }
+}
+
+pub fn process_meti_command(command: &ArgMatches, settings: settings::Settings) {
+    let mut client = xdd_api_client::new(settings);
+
+    if command.subcommand_matches("list").is_some() {
+        println!("Listing!");
+        let answer: Result<Metis, restson::Error> = client.get(());
+        match answer {
+            // We need to extract the enum value
+            Ok(metis) => {
+                println!("{:?}", metis);
             }
             Err(e) => println!("Error: {:?}", e),
         }
