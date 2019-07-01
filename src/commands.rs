@@ -1,10 +1,10 @@
+use auth;
 use clap::ArgMatches;
 use collections::{Echoes, Metis};
 use restson::RestPath;
 use settings;
 use stats::EchoesStats;
 use xdd_api_client;
-use auth;
 
 impl RestPath<()> for Echoes {
     fn get_path(_: ()) -> Result<String, restson::Error> {
@@ -65,6 +65,6 @@ pub fn process_meti_command(command: &ArgMatches, settings: settings::Settings) 
 }
 
 pub fn process_login_command(command: &ArgMatches, settings: settings::Settings) {
-    log::info!("Logging in...");
+    log::info!("Logging in with Auth0...");
     auth::auth();
 }

@@ -17,10 +17,10 @@ extern crate oauth2;
 extern crate rand;
 extern crate url;
 
-
 //use std::collections::HashMap;
 
 // TODO: this could probably be improved and moved to a lib.rs file
+pub mod auth;
 pub mod collections;
 pub mod commands;
 pub mod echo;
@@ -28,10 +28,10 @@ pub mod meti;
 pub mod settings;
 pub mod stats;
 pub mod xdd_api_client;
-pub mod auth;
 
 #[macro_use]
 extern crate clap;
+
 use clap::App;
 
 fn main() {
