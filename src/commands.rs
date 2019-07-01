@@ -13,7 +13,7 @@ impl RestPath<()> for Echoes {
 }
 impl RestPath<()> for EchoesStats {
     fn get_path(_: ()) -> Result<String, restson::Error> {
-        Ok(String::from("stats"))
+        Ok(String::from("echoes/stats"))
     }
 }
 impl RestPath<()> for Metis {
