@@ -18,6 +18,7 @@ pub mod collections;
 pub mod commands;
 pub mod echo;
 pub mod settings;
+pub mod stats;
 pub mod xdd_api_client;
 
 #[macro_use]
