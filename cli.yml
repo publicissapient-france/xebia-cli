@@ -10,6 +10,13 @@ args:
       long: debug
       help: Full debug mode. Prints and local endpoints
 subcommands:
+    - login:
+        about: 'Login with Auth0'
+        version: "0.1"
+        author: Alexis Horgix Chotard <horgix@xebia.fr>
+        aliases:
+          - auth
+          - signin
     - echoes:
         about: '"Echo des TOs" related commands. Default will help'
         version: "0.1"

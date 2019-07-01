@@ -11,9 +11,16 @@ extern crate restson;
 extern crate serde;
 extern crate serde_json;
 
+// For Login
+extern crate base64;
+extern crate oauth2;
+extern crate rand;
+extern crate url;
+
 //use std::collections::HashMap;
 
 // TODO: this could probably be improved and moved to a lib.rs file
+pub mod auth;
 pub mod collections;
 pub mod commands;
 pub mod echo;
@@ -24,6 +31,7 @@ pub mod xdd_api_client;
 
 #[macro_use]
 extern crate clap;
+
 use clap::App;
 
 fn main() {
@@ -51,7 +59,9 @@ fn main() {
             log::debug!("Settings defined successfully: {:?}", settings);
 
             // Dispatch work
-            if let Some(_matches) = matches.subcommand_matches("echoes") {
+            if let Some(_matches) = matches.subcommand_matches("login") {
+                commands::process_login_command(_matches, settings);
+            } else if let Some(_matches) = matches.subcommand_matches("echoes") {
                 commands::process_echoes_command(_matches, settings);
             } else if let Some(_matches) = matches.subcommand_matches("meti") {
                 commands::process_meti_command(_matches, settings);
