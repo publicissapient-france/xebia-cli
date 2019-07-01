@@ -2,8 +2,8 @@ use clap::ArgMatches;
 use collections::Echoes;
 use restson::RestPath;
 use settings;
-use xdd_api_client;
 use stats::EchoesStats;
+use xdd_api_client;
 
 impl RestPath<()> for Echoes {
     fn get_path(_: ()) -> Result<String, restson::Error> {
